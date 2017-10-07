@@ -1,11 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const ListJSX = ({ dashboardItems }) => {
+const ListJSX = ({ dashboardItems, onClick, activeIndex }) => {
 
   const items = dashboardItems.map((item, i) => {
+    const itemJSX = activeIndex === i
+     ? <p><b><u>{item.label}</u></b></p>
+     : <p>{item.label}</p>
     return (
-      <h4 key={i}>{item.label}</h4>
+      <h4 key={i} onClick={onClick(i)}>{itemJSX}</h4>
     )
   })  
   return (
@@ -16,7 +19,9 @@ const ListJSX = ({ dashboardItems }) => {
 }
 
 ListJSX.propTypes = {
-  dashboardItems: PropTypes.array.isRequired
+  dashboardItems: PropTypes.array.isRequired,
+  onClick: PropTypes.func.isRequired,
+  activeIndex: PropTypes.number
 }
 
 export default ListJSX
