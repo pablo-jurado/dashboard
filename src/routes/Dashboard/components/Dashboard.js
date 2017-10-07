@@ -1,22 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Dashboard from 'components/Dashboard'
 
-export const dashboard = ({ dashboard, increment, doubleAsync }) => (
-  <div style={{ margin: '0 auto' }} >
-    <h2>dashboard: {dashboard}</h2>
-    <button className='btn btn-primary' onClick={increment}>
-      Increment
-    </button>
-    {' '}
-    <button className='btn btn-secondary' onClick={doubleAsync}>
-      Double (Async)
-    </button>
-  </div>
-)
-dashboard.propTypes = {
-  dashboard: PropTypes.number.isRequired,
-  increment: PropTypes.func.isRequired,
-  doubleAsync: PropTypes.func.isRequired,
+class DashboardRoute extends React.Component {
+
+  static PropTypes = {
+    dashboardVisitIncrement: PropTypes.func.isRequired,
+    dashboard: PropTypes.number.isRequired    
+  }
+
+  componentDidMount () {
+    this.props.dashboardVisitIncrement()
+  }
+
+  render () {
+    return (
+      <Dashboard dashboard={this.props.dashboard} />
+    )
+  }
 }
 
-export default dashboard
+export default DashboardRoute
