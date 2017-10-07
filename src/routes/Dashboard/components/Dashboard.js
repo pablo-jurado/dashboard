@@ -6,7 +6,6 @@ class DashboardRoute extends React.Component {
 
   static PropTypes = {
     dashboardVisitIncrement: PropTypes.func.isRequired,
-    dashboard: PropTypes.number.isRequired    
   }
 
   componentDidMount () {
@@ -14,8 +13,9 @@ class DashboardRoute extends React.Component {
   }
 
   render () {
+    console.log('props', this.props)
     return (
-      <Dashboard dashboard={this.props.dashboard} />
+      <Dashboard visitsCount={this.props.dashboard.visitsCount} dashboardItems={this.props.dashboard.dashboardItems} />
     )
   }
 }
